@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="flashlight.skyfree.com.flashlight.Activity.SettingActivity">
+
+    <LinearLayout
+        android:background="@color/colorBackgroundActionBar"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:id="@+id/img_back_setting"
+            android:src="@drawable/ic_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+        <TextView
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:paddingLeft="16dp"
+            android:text="Settings"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorBlack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_automatic_on"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_launch_open"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="left|bottom"
+                    android:text="Automatic on"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:paddingRight="20dp"
+                    android:textColor="@color/colorTextDes"
+                    android:text="Turn on flashlight on startup"
+                    android:gravity="left|top"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <Switch
+                android:checked="true"
+                android:theme="@style/SCBSwitch"
+                android:id="@+id/sw_on"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_automatic_off"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_launch_open"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="left|bottom"
+                    android:text="Automatic off"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:paddingRight="20dp"
+                    android:textColor="@color/colorTextDes"
+                    android:text="Turn off flashlight after a period of time"
+                    android:gravity="left|top"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_times_up"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textColor="@color/colorIcon"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

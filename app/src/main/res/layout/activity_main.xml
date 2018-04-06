@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/img_setting"
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_setting"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_screen"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_compass"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_morse"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_big_ring"
+            android:layout_centerInParent="true"
+            android:src="@drawable/light_normal_big_ring"
+            android:layout_width="280dp"
+            android:layout_height="280dp" />
+        <ImageView
+            android:id="@+id/img_small_ring"
+            android:layout_centerInParent="true"
+            android:src="@drawable/light_normal_small_ring"
+            android:layout_width="280dp"
+            android:layout_height="280dp" />
+        <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:layout_centerInParent="true"
+            android:id="@+id/pulsator"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            app:pulse_count="4"
+            app:pulse_duration="2000"
+            app:pulse_repeat="0"
+            app:pulse_color="#ff68b1"
+            app:pulse_startFromScratch="true"
+            app:pulse_interpolator="Linear">
+        </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+        <ImageView
+            android:id="@+id/btn_turn_on"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:src="@drawable/light_normal_big_off"
+            android:layout_width="280dp"
+            android:layout_height="280dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_light_sos"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/light_mode_sos_off"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <ImageView
+            android:id="@+id/img_light_normal"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/light_normal_off"
+            android:layout_width="160dp"
+            android:layout_height="60dp" />
+        <ImageView
+            android:id="@+id/img_light_speed"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/flash_light_speed_1_off"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

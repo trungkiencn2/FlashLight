@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/colorBackgroundActionBar"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:paddingLeft="20dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:text="Automatic off"
+        android:layout_width="match_parent"
+        android:layout_height="56dp" />
+
+    <RadioGroup
+        android:checkedButton="@id/radio_never"
+        android:paddingLeft="20dp"
+        android:id="@+id/radio_gr_times_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <RadioButton
+            android:id="@+id/radio_10s"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="10 Seconds"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_20s"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="20 Seconds"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_1m"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="1 Minute"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_3m"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="3 Minutes"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_5m"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="5 Minutes"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_10m"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="10 Minutes"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_30m"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="30 Minutes"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <RadioButton
+            android:id="@+id/radio_never"
+            android:paddingLeft="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="Never"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+        
+    </RadioGroup>
+
+    <LinearLayout
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_cancel_dialog"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_gravity="right"
+            android:textColor="@color/colorWhite"
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tv_ok_dialog"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_gravity="right"
+            android:textColor="@color/colorWhite"
+            android:text="OK"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

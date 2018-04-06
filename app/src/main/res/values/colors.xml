@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#191125</color>
+    <color name="colorPrimaryDark">#191125</color>
+    <color name="colorAccent">#191125</color>
+    <color name="colorActionBar">#e8e3dd</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTextDes">#626262</color>
+    <color name="colorBackgroundActionBar">#37334c</color>
+    <color name="colorIcon">#9b95fd</color>
+</resources>
