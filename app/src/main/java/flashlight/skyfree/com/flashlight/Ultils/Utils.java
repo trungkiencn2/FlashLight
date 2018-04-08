@@ -10,4 +10,5 @@ public class Utils {
     public static String AUTOMATIC_ON = "AUTOMATIC_ON";
     public static String TIMES_UP_TIME = "TIMES_UP_TIME";
     public static String TIMES_UP_TEXT = "TIMES_UP_TEXT";
+    public static String SETTING = "SETTING";
 }

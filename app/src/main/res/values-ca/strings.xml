@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flash Light</string>
+    <string name="automatic_off">Desactivat automàticament</string>
+    <string name="automatic_on">Automàtic en</string>
+    <string name="ten_seconds">10 segons</string>
+    <string name="twenty_seconds">20 segons</string>
+    <string name="one_minute">1 minut</string>
+    <string name="three_minute">3 minuts</string>
+    <string name="five_minute">5 minuts</string>
+    <string name="ten_minute">10 minuts</string>
+    <string name="thirty_minute">30 minuts</string>
+    <string name="never">Mai</string>
+    <string name="cancel">Cancel · lar</string>
+    <string name="ok">D`acord</string>
+    <string name="setting">Configuració</string>
+    <string name="turn_on">Activa la linterna a l`inici</string>
+    <string name="turn_off">Apagueu la llanterna després d`un període de temps</string>
+</resources>

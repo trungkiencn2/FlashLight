@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flash Light</string>
+    <string name="automatic_off">Desligamento automático</string>
+    <string name="automatic_on">Automático em</string>
+    <string name="ten_seconds">10 segundos</string>
+    <string name="twenty_seconds">20 segundos</string>
+    <string name="one_minute">1 minuto</string>
+    <string name="three_minute">3 minuto</string>
+    <string name="five_minute">5 minuto</string>
+    <string name="ten_minute">10 minuto</string>
+    <string name="thirty_minute">30 minuto</string>
+    <string name="never">Nunca</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Está bem</string>
+    <string name="setting">Configurações</string>
+    <string name="turn_on">Ligue a lanterna na inicialização</string>
+    <string name="turn_off">Desligue a lanterna após um período de tempo</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">フラッシュライト</string>
+    <string name="automatic_off">自動オフ</string>
+    <string name="automatic_on">自動オン</string>
+    <string name="ten_seconds">10 秒</string>
+    <string name="twenty_seconds">20 秒</string>
+    <string name="one_minute">1 分</string>
+    <string name="three_minute">3 分</string>
+    <string name="five_minute">5 分</string>
+    <string name="ten_minute">10 分</string>
+    <string name="thirty_minute">30 分</string>
+    <string name="never">絶対に</string>
+    <string name="cancel">キャンセル</string>
+    <string name="ok">[OK]</string>
+    <string name="setting">設定</string>
+    <string name="turn_on">起動時に懐中電灯をオンにする</string>
+    <string name="turn_off">一定時間後に懐中電灯をオフにする</string>
+</resources>

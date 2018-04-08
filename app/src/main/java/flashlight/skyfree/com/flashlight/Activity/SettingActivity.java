@@ -39,7 +39,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_setting);
         initView();
 
-        sharedPreferences = getSharedPreferences("setting", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Utils.SETTING, MODE_PRIVATE);
         mEditor  = sharedPreferences.edit();
     }
 
@@ -55,8 +55,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void addEvent(){
-        mTvTimesUp.setText(sharedPreferences.getString(Utils.TIMES_UP_TEXT, "Never"));
-        mSwOn.setChecked(sharedPreferences.getBoolean(Utils.AUTOMATIC_ON, false));
+        mTvTimesUp.setText(sharedPreferences.getString(Utils.TIMES_UP_TEXT, getString(R.string.never)));
+        mSwOn.setChecked(sharedPreferences.getBoolean(Utils.AUTOMATIC_ON, true));
     }
 
     @Override
@@ -83,16 +83,13 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onPause() {
         super.onPause();
-        mSwOn.setChecked(sharedPreferences.getBoolean(Utils.AUTOMATIC_ON, true));
-
         if(mSwOn.isChecked()){
-            mSwOn.setChecked(false);
-            mEditor.putBoolean(Utils.AUTOMATIC_ON, false);
-        }else {
-            mSwOn.setChecked(true);
             mEditor.putBoolean(Utils.AUTOMATIC_ON, true);
+            mEditor.apply();
+        }else {
+            mEditor.putBoolean(Utils.AUTOMATIC_ON, false);
+            mEditor.apply();
         }
-        mEditor.apply();
     }
 
     private void showAlertDialog() {
@@ -115,12 +112,29 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
         final AlertDialog alertStartDialog = dialogBuilder.create();
         alertStartDialog.show();
+
+        if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 10000){
+            mRadioGroup.check(R.id.radio_10s);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 20000){
+            mRadioGroup.check(R.id.radio_20s);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 60000){
+            mRadioGroup.check(R.id.radio_1m);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 60000 * 3){
+            mRadioGroup.check(R.id.radio_3m);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 60000 * 5){
+            mRadioGroup.check(R.id.radio_5m);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 60000 * 10){
+            mRadioGroup.check(R.id.radio_10m);
+        }else if(sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) == 60000 * 30){
+            mRadioGroup.check(R.id.radio_30m);
+        }
+
         mRadioBtn10s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 10000);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "10 Seconds");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.ten_seconds));
                 }
             }
         });
@@ -130,7 +144,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 20000);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "20 Seconds");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.twenty_seconds));
                 }
             }
         });
@@ -140,7 +154,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 60000);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "1 Minute");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.one_minute));
                 }
             }
         });
@@ -150,7 +164,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 60000 * 3);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "3 Minutes");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.three_minute));
                 }
             }
         });
@@ -160,7 +174,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 60000 * 5);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "5 Minutes");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.five_minute));
                 }
             }
         });
@@ -170,7 +184,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 60000 * 10);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "10 Minutes");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.ten_minute));
                 }
             }
         });
@@ -180,7 +194,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 60000 * 30);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "30 Minutes");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.thirty_minute));
                 }
             }
         });
@@ -190,7 +204,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mEditor.putInt(Utils.TIMES_UP_TIME, 0);
-                    mEditor.putString(Utils.TIMES_UP_TEXT, "Never");
+                    mEditor.putString(Utils.TIMES_UP_TEXT, getString(R.string.never));
                 }
             }
         });

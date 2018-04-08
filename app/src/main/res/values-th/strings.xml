@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ไฟฉาย</string>
+    <string name="automatic_off">ปิดโดยอัตโนมัติ</string>
+    <string name="automatic_on">เปิดโดยอัตโนมัติ</string>
+    <string name="ten_seconds">10 วินาที</string>
+    <string name="twenty_seconds">20 วินาที</string>
+    <string name="one_minute">1 นาที</string>
+    <string name="three_minute">3 นาที</string>
+    <string name="five_minute">5 นาที</string>
+    <string name="ten_minute">10 นาที</string>
+    <string name="thirty_minute">30 นาที</string>
+    <string name="never">ไม่เคย</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="ok">ตกลง</string>
+    <string name="setting">การตั้งค่า</string>
+    <string name="turn_on">เปิดไฟฉายเมื่อเริ่มต้น</string>
+    <string name="turn_off">ปิดไฟฉายหลังจากระยะเวลาหนึ่ง</string>
+</resources>

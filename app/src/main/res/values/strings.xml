@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">FlashLight</string>
+    <string name="app_name">Flash Light</string>
+    <string name="automatic_off">Automatic off</string>
+    <string name="automatic_on">Automatic on</string>
+    <string name="ten_seconds">10 Seconds</string>
+    <string name="twenty_seconds">20 Seconds</string>
+    <string name="one_minute">1 Minute</string>
+    <string name="three_minute">3 Minutes</string>
+    <string name="five_minute">5 Minutes</string>
+    <string name="ten_minute">10 Minutes</string>
+    <string name="thirty_minute">30 Minutes</string>
+    <string name="never">Never</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="setting">Settings</string>
+    <string name="turn_on">Turn on flashlight on startup</string>
+    <string name="turn_off">Turn off flashlight after a period of time</string>
 </resources>

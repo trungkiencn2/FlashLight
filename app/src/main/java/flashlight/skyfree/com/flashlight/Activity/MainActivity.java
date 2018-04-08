@@ -36,17 +36,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Runnable startSv = new Runnable() {
         @Override
         public void run() {
-            mCount += mTimeRepeat;
-            if (mCount < mTimeRepeat + 20 && mCount > mTimeRepeat - 20) {
+            mCount += mTimeSpeedRepeat;
+            if (mCount < mTimeSpeedRepeat + 20 && mCount > mTimeSpeedRepeat - 20) {
                 startService(new Intent(MainActivity.this, FlashServices.class));
-            } else if (mCount >= mTimeRepeat*2) {
+            } else if (mCount >= mTimeSpeedRepeat*2) {
                 stopService(new Intent(MainActivity.this, FlashServices.class));
                 mCount = 0;
             }
             if(mTimesUp != 0){
-                mCountToTimesUp += mTimeRepeat;
+                mCountToTimesUp += mTimeSpeedRepeat;
             }
-            handler.postDelayed(startSv, mTimeRepeat);
+            handler.postDelayed(startSv, mTimeSpeedRepeat);
 
             if(mCountToTimesUp > mTimesUp){
                 handler.removeCallbacks(startSv);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mCountToTimesUp += 1000;
             handler.postDelayed(timesUp, 1000);
 
-            if(mCountToTimesUp > mTimesUp){
+            if(mCountToTimesUp > mTimesUp && mTimesUp > 10){
                 handler.removeCallbacks(timesUp);
                 handler.removeCallbacks(startSv);
                 stopService(new Intent(MainActivity.this, FlashServices.class));
@@ -119,12 +119,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
     private int mCount = 0;
-    private int mTimeRepeat;
+    private int mTimeSpeedRepeat;
     private int mCountToTimesUp = 0;
 
     private ImageView imgBigRing;
     private ImageView imgSmallRing;
     private PulsatorLayout pulsator;
+    private int mTimesUp;
 
     public static final String SOS_ON = "SOS_ON";
     public static final String SOS_OFF = "SOS_OFF";
@@ -152,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initView();
         PulsatorLayout pulsator = (PulsatorLayout) findViewById(R.id.pulsator);
-
     }
 
     private void initView() {
@@ -173,22 +173,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgLightModeSOS.setOnClickListener(this);
         mImgLightNormal.setOnClickListener(this);
         mImgLightSpeed.setOnClickListener(this);
-
         mBtnTurnOn.setOnClickListener(this);
     }
-    
-    private int mTimesUp;
 
     private void addEvent(){
-        SharedPreferences sharedPreferences = getSharedPreferences("setting", MODE_PRIVATE);
-        if(sharedPreferences.getBoolean(Utils.AUTOMATIC_ON, true)){
+        TYPE = TYPE_NORMAL;
+        SharedPreferences sharedPreferences = getSharedPreferences(Utils.SETTING, MODE_PRIVATE);
+        mTimesUp = sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0) / 2;
+        boolean mCheckAutoOn = sharedPreferences.getBoolean(Utils.AUTOMATIC_ON, true);
+        if(mCheckAutoOn && mTimesUp < 10){
+            mImgLightNormal.setImageResource(R.drawable.light_normal_on);
+            mBtnTurnOn.setImageResource(R.drawable.light_normal_big_on);
+            handler.postDelayed(runnable, 10);
+            pulsator.start();
             startService(new Intent(MainActivity.this, FlashServices.class));
             isFlashOn = true;
-        }else {
+        }else if(mCheckAutoOn && mTimesUp > 10){
+            startService(new Intent(MainActivity.this, FlashServices.class));
+            mImgLightModeSOS.setImageResource(R.drawable.light_mode_sos_off);
+            mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_1_off);
+            mImgLightNormal.setImageResource(R.drawable.light_normal_on);
+            mBtnTurnOn.setImageResource(R.drawable.light_normal_big_on);
+            handler.postDelayed(runnable, 10);
+            pulsator.start();
+            handler.postDelayed(timesUp, mTimesUp);
+            isFlashOn = true;
+        } else if(!mCheckAutoOn) {
+            pulsator.stop();
+            handler.removeCallbacks(runnable);
+            mBtnTurnOn.setImageResource(R.drawable.light_normal_big_off);
+            mImgLightNormal.setImageResource(R.drawable.light_normal_close_on);
             stopService(new Intent(MainActivity.this, FlashServices.class));
             isFlashOn = false;
         }
-        mTimesUp = sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0);
+
 
     }
 
@@ -211,15 +229,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_turn_on:
                 if (!isFlashOn) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(Utils.SETTING, MODE_PRIVATE);
+                    mTimesUp = sharedPreferences.getInt(Utils.TIMES_UP_TIME, 0);
+                    mCountToTimesUp = 0;
                     mBtnTurnOn.setImageResource(R.drawable.light_normal_big_on);
                     pulsator.start();
                     handler.postDelayed(runnable, 10);
                     isFlashOn = true;
                     if (TYPE.equals(TYPE_SOS)) {
-                        mTimeRepeat = 200;
+                        mTimeSpeedRepeat = 200;
                         stopService(new Intent(MainActivity.this, FlashServices.class));
                         handler.removeCallbacks(startSv);
-                        handler.postDelayed(startSv, mTimeRepeat);
+                        handler.postDelayed(startSv, mTimeSpeedRepeat);
                         mBtnTurnOn.setImageResource(R.drawable.light_mode_sos_on_big);
                         mImgLightModeSOS.setImageResource(R.drawable.light_mode_sos_on);
                     } else if (TYPE.equals(TYPE_NORMAL)) {
@@ -233,21 +254,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         stopService(new Intent(MainActivity.this, FlashServices.class));
                         handler.removeCallbacks(startSv);
                         if (STATE_SPEED.equals(ONE_OFF)) {
-                            mTimeRepeat = 700;
-                            handler.postDelayed(startSv, mTimeRepeat);
-//                            handler.postDelayed(timesUp, 1000);
+                            mTimeSpeedRepeat = 700;
+                            handler.postDelayed(startSv, mTimeSpeedRepeat);
                             mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_1_on);
                             STATE_SPEED = ONE_ON;
                         } else if (STATE_SPEED.equals(TWO_OFF)) {
-                            mTimeRepeat = 500;
-                            handler.postDelayed(startSv, mTimeRepeat);
-//                            handler.postDelayed(timesUp, 1000);
+                            mTimeSpeedRepeat = 500;
+                            handler.postDelayed(startSv, mTimeSpeedRepeat);
                             mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_2_on);
                             STATE_SPEED = TWO_ON;
                         } else if (STATE_SPEED.equals(THREE_OFF)) {
-                            mTimeRepeat = 300;
-                            handler.postDelayed(startSv, mTimeRepeat);
-//                            handler.postDelayed(timesUp, 1000);
+                            mTimeSpeedRepeat = 300;
+                            handler.postDelayed(startSv, mTimeSpeedRepeat);
                             mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_3_on);
                             STATE_SPEED = THREE_ON;
                         }
@@ -306,8 +324,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stopService(new Intent(MainActivity.this, FlashServices.class));
                     handler.removeCallbacks(startSv);
-                    mTimeRepeat = 200;
-                    handler.postDelayed(startSv, mTimeRepeat);
+                    handler.removeCallbacks(timesUp);
+                    mTimeSpeedRepeat = 200;
+                    handler.postDelayed(startSv, mTimeSpeedRepeat);
+                    handler.postDelayed(timesUp, 1000);
                     mBtnTurnOn.setImageResource(R.drawable.light_mode_sos_on_big);
                     mImgLightModeSOS.setImageResource(R.drawable.light_mode_sos_on);
                     STATE_SOS = SOS_OFF;
@@ -333,6 +353,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     STATE_NORMAL = NORMAL_ON;
                 } else {
                     handler.removeCallbacks(startSv);
+                    handler.postDelayed(timesUp, 1000);
                     stopService(new Intent(MainActivity.this, FlashServices.class));
                     startService(new Intent(MainActivity.this, FlashServices.class));
                     mBtnTurnOn.setImageResource(R.drawable.light_normal_big_on);
@@ -359,26 +380,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         STATE_SPEED = ONE_OFF;
                     }
                 } else {
+                    handler.postDelayed(timesUp, 1000);
                     mBtnTurnOn.setImageResource(R.drawable.light_normal_big_on);
                     if (STATE_SPEED.equals(ONE_ON) || STATE_SPEED.equals(ONE_OFF)) {
                         stopService(new Intent(MainActivity.this, FlashServices.class));
                         handler.removeCallbacks(startSv);
-                        mTimeRepeat = 500;
-                        handler.postDelayed(startSv, mTimeRepeat);
+                        mTimeSpeedRepeat = 500;
+                        handler.postDelayed(startSv, mTimeSpeedRepeat);
                         mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_2_on);
                         STATE_SPEED = TWO_ON;
                     } else if (STATE_SPEED.equals(TWO_ON) || STATE_SPEED.equals(TWO_OFF)) {
                         stopService(new Intent(MainActivity.this, FlashServices.class));
                         handler.removeCallbacks(startSv);
-                        mTimeRepeat = 300;
-                        handler.postDelayed(startSv, mTimeRepeat);
+                        mTimeSpeedRepeat = 300;
+                        handler.postDelayed(startSv, mTimeSpeedRepeat);
                         mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_3_on);
                         STATE_SPEED = THREE_ON;
                     } else if (STATE_SPEED.equals(THREE_ON) || STATE_SPEED.equals(THREE_OFF)) {
                         stopService(new Intent(MainActivity.this, FlashServices.class));
                         handler.removeCallbacks(startSv);
-                        mTimeRepeat = 700;
-                        handler.postDelayed(startSv, mTimeRepeat);
+                        mTimeSpeedRepeat = 700;
+                        handler.postDelayed(startSv, mTimeSpeedRepeat);
                         mImgLightSpeed.setImageResource(R.drawable.flash_light_speed_1_on);
                         STATE_SPEED = ONE_ON;
                     }

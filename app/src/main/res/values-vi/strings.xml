@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Đèn flash</string>
+    <string name="automatic_off">Tự động tắt</string>
+    <string name="automatic_on">Tự động bật</string>
+    <string name="ten_seconds">10 giây</string>
+    <string name="twenty_seconds">20 giây</string>
+    <string name="one_minute">1 phút</string>
+    <string name="three_minute">3 phút</string>
+    <string name="five_minute">5 phút</string>
+    <string name="ten_minute">10 phút</string>
+    <string name="thirty_minute">30 phút</string>
+    <string name="never">Không bao giờ</string>
+    <string name="cancel">Hủy</string>
+    <string name="ok">OK</string>
+    <string name="setting">Cài đặt</string>
+    <string name="turn_on">Bật đèn pin khi khởi động</string>
+    <string name="turn_off">Tắt đèn pin sau một khoảng thời gian</string>
+</resources>

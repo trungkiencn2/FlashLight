@@ -23,7 +23,7 @@
             android:textSize="20sp"
             android:textColor="@color/colorWhite"
             android:paddingLeft="16dp"
-            android:text="Settings"
+            android:text="@string/setting"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -57,7 +57,7 @@
 
                 <TextView
                     android:gravity="left|bottom"
-                    android:text="Automatic on"
+                    android:text="@string/automatic_on"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 <TextView
                     android:paddingRight="20dp"
                     android:textColor="@color/colorTextDes"
-                    android:text="Turn on flashlight on startup"
+                    android:text="@string/turn_on"
                     android:gravity="left|top"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -106,7 +106,7 @@
 
                 <TextView
                     android:gravity="left|bottom"
-                    android:text="Automatic off"
+                    android:text="@string/automatic_off"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 <TextView
                     android:paddingRight="20dp"
                     android:textColor="@color/colorTextDes"
-                    android:text="Turn off flashlight after a period of time"
+                    android:text="@string/turn_off"
                     android:gravity="left|top"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
